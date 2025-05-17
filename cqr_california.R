@@ -25,7 +25,7 @@ rf <- ranger(y ~ ., data = trn, quantreg = TRUE)
 alpha <- 0.1
 
 alpha_low <- alpha / 2
-alpha_high <- 1 - alpha /2
+alpha_high <- 1 - alpha / 2
 
 q_hat_cal <- predict(rf, data = cal, type = "quantiles", quantiles = c(alpha_low, alpha_high))$predictions
 E <- pmax(q_hat_cal[, 1] - cal$y, cal$y - q_hat_cal[, 2])
