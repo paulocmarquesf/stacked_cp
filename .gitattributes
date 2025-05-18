@@ -1,5 +1,5 @@
-*.csv linguist-detectable=false
-*.RDS linguist-detectable=false
-*.png linguist-detectable=false
-*.R linguist-language=R
+R/RDS/** linguist-generated
+data/** linguist-generated
+*.png linguist-generated
 *.py linguist-language=Python
+*.R linguist-language=R
