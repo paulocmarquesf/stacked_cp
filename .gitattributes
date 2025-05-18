@@ -1,0 +1,2 @@
+*.R linguist-language=R
+*.py linguist-language=Python
