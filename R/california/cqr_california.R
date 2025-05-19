@@ -1,20 +1,24 @@
-# Conformalized Quantile Regression (Ames Housing)
+# Conformalized Quantile Regression (California Housing)
 
 library(tidyverse)
 library(rsample)
 library(ranger)
-library(AmesHousing)
+library(this.path)
 
-ames <- make_ames() |> rename(y = Sale_Price)
+setwd(dirname(this.path()))
+
+california <- read_csv("california.csv", show_col_types = FALSE) |>
+    mutate(ocean_proximity = as_factor(ocean_proximity)) |>
+    rename(y = median_house_value)
 
 set.seed(42)
 
-split <- initial_split(ames, prop = 0.7)
+split <- initial_split(california, prop = 0.7)
 
 trn <- training(split)
 tst <- testing(split)
 
-idx_cal <- 1:500
+idx_cal <- 1:2000
 
 cal <- trn[idx_cal, ]
 trn <- trn[-idx_cal, ]
