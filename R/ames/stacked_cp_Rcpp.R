@@ -1,10 +1,5 @@
 # Stacked conformal prediction using Rcpp (Ames Housing)
 
-library(tidyverse)
-library(rsample)
-library(ranger)
-library(catboost)
-library(AmesHousing)
 library(this.path)
 library(Rcpp)
 
