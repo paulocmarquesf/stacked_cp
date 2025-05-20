@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import statsmodels.formula.api as smf
 from tqdm.auto import tqdm
+from time import perf_counter
 import functions_cpp
 
 stack_tst = pd.read_feather("stack_tst_california.feather")
@@ -19,10 +20,16 @@ alpha = 0.1
 
 print("Computing intervals...")
 
+begin = perf_counter()
+
 cp_interval2 = functions_cpp.full_cp_interval(Z, stack_trn["y"].values, Z_tst, alpha)
+
+print(f"Elapsed: {perf_counter() - begin:.1f} seconds")
 
 coverage2 = np.mean((cp_interval2[:, 0] <= stack_tst["y"].values) & (stack_tst["y"].values <= cp_interval2[:, 1]))
 median_width2 = np.median(cp_interval2[:, 1] - cp_interval2[:, 0])
 
 print(f"Coverage: {coverage2:.3f}")
 print(f"Median width: {median_width2:.2f}")
+
+
