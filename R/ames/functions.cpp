@@ -1,6 +1,5 @@
 #include <RcppArmadillo.h>
 #include <omp.h>
-#include <iomanip>           // ⟵ new
 using namespace Rcpp;
 using namespace arma;
 
@@ -49,9 +48,6 @@ mat full_cp_interval_Rcpp(const mat& Z, const colvec& y, const mat& Z_tst, doubl
 
     mat cp_interval(m, 2, fill::zeros);
 
-    size_t counter = 0;                              // ⟵ new
-    size_t step = std::max<size_t>(1, m / 100);      // ⟵ new
-
     #pragma omp parallel for schedule(dynamic)
     for (size_t i = 0; i < m; ++i) {
         colvec z0 = Z_tst.row(i).t();
@@ -79,17 +75,6 @@ mat full_cp_interval_Rcpp(const mat& Z, const colvec& y, const mat& Z_tst, doubl
             else upper = y0;
         }
         cp_interval(i, 1) = sup;
-
-        #pragma omp atomic                             // ⟵ new
-        ++counter;                                     // ⟵ new
-        if (counter % step == 0 || counter == m) {     // ⟵ new
-            #pragma omp critical                       // ⟵ new
-            {
-                Rcout << "\r" << std::setw(3)
-                      << (counter * 100) / m << "% completed" << std::flush;
-                if (counter == m) Rcout << std::endl;
-            }
-        }
     }
     return cp_interval;
 }
