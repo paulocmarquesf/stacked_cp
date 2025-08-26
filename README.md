@@ -4,7 +4,7 @@
 
 > Paulo C. Marques F.
 
-https://arxiv.org/abs/2505.12578
+[Paper](https://raw.githubusercontent.com/mlresearch/v266/main/assets/marques25a/marques25a.pdf)
 
 ### Abstract
 
