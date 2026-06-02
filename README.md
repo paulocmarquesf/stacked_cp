@@ -14,7 +14,7 @@
 }
 ```
 
-## Stacked conformal prediction
+# Stacked conformal prediction
 
 > Paulo C. Marques F.
 
