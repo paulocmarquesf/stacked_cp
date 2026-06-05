@@ -1,5 +1,5 @@
 ```bibtex
-@InProceedings{marques2025,
+@InProceedings{marquesf2025,
   title = {Stacked conformal prediction},
   author = {Paulo C. {Marques F.}},
   booktitle = {Proceedings of the Fourteenth Symposium on Conformal and Probabilistic Prediction with Applications},
